@@ -1,0 +1,29 @@
+services:
+  - name: example-docdb-sync
+    type: job
+    image:
+      name: "{{.Values.acr.name}}.azurecr.io/examples/example-docdb-sync"
+      tag: "{{.Values.buildNumber}}"
+    solutionFile: "{{.Values.sourceCodeRepoRoot}}\\AppInsightsExample.sln"
+    projectFile: "{{.Values.sourceCodeRepoRoot}}\\AppInsightsExample\\AppInsightsExample.csproj"
+  - name: example-events-api
+    type: api
+    image:
+      name: "{{.Values.acr.name}}.azurecr.io/examples/example-events-api"
+      tag: "{{.Values.buildNumber}}"
+    solutionFile: "{{.Values.sourceCodeRepoRoot}}\\AppInsightsExample.sln"
+    projectFile: "{{.Values.sourceCodeRepoRoot}}\\Examples.Events.Api\\Examples.Events.Api.csproj"
+  - name: example-events-producer
+    type: api
+    image:
+      name: "{{.Values.acr.name}}.azurecr.io/examples/example-events-producer"
+      tag: "{{.Values.buildNumber}}"
+    solutionFile: "{{.Values.sourceCodeRepoRoot}}\\AppInsightsExample.sln"
+    projectFile: "{{.Values.sourceCodeRepoRoot}}\\Examples.Events.Producer\\Examples.Events.Producer.csproj"
+  - name: example-events-consumer
+    type: job
+    image:
+      name: "{{.Values.acr.name}}.azurecr.io/examples/example-events-consumer"
+      tag: "{{.Values.buildNumber}}"
+    solutionFile: "{{.Values.sourceCodeRepoRoot}}\\AppInsightsExample.sln"
+    projectFile: "{{.Values.sourceCodeRepoRoot}}\\Examples.Events.Consumer\\Examples.Events.Consumer.csproj"
